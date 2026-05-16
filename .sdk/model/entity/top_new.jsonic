@@ -1,0 +1,71 @@
+# Entity: top_new
+
+main: kit: entity: top_new: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "new"
+      req: true
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "top_new"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "date"
+                orig: "date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "en"
+                kind: "query"
+                name: "language"
+                orig: "language"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "us"
+                kind: "query"
+                name: "source_country"
+                orig: "source_country"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/top-news"
+          parts: [
+            "top-news"
+          ]
+          select: {
+            exist: [
+              "date"
+              "language"
+              "source_country"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,239 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Top News API",
+    "description": "This API provides the top news articles from a specified country in a specific language for a given date. The news articles are aggregated from multiple sources, and the ranking is based on the number of sources represented in each cluster.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://worldnewsapi.com/docs/top-news/"
+    },
+    "termsOfService": "https://worldnewsapi.com/docs/top-news/"
+  },
+  "servers": [
+    {
+      "url": "https://api.worldnewsapi.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/top-news": {
+      "get": {
+        "summary": "Get Top News",
+        "description": "Get the top news from a country in a language for a specific date. The top news are clustered from multiple sources in the given country. The more news in a cluster the higher the cluster is ranked. Results for the current day are frequently updated to capture new developments.",
+        "operationId": "getTopNews",
+        "parameters": [
+          {
+            "name": "source-country",
+            "in": "query",
+            "description": "The country code for which to retrieve top news (e.g., 'us' for United States)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "us"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "description": "The language code for the news articles (e.g., 'en' for English)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "en"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "The date for which to retrieve top news. If not specified, defaults to current day.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with top news clusters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopNewsResponse"
+                },
+                "example": {
+                  "top_news": [
+                    {
+                      "news": [
+                        {
+                          "id": 224767206,
+                          "title": "Jury to Begin Deliberations In Trump Trial",
+                          "text": "...",
+                          "summary": "...",
+                          "url": "https://politicalwire.com/2024/05/28/jury-to-begin-deliberations-in-trump-trial/",
+                          "image": "https://politicalwire.com/wp-content/uploads/2018/02/PW-podcast-logo.jpg",
+                          "video": null,
+                          "publish_date": "2024-05-29 00:10:48",
+                          "author": "Taegan Goddard",
+                          "authors": [
+                            "Taegan Goddard"
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "language": "en",
+                  "country": "us"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters"
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing API key"
+          },
+          "429": {
+            "description": "Too many requests - rate limit exceeded"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TopNewsResponse": {
+        "type": "object",
+        "properties": {
+          "top_news": {
+            "type": "array",
+            "description": "Array of news clusters, ordered by ranking",
+            "items": {
+              "$ref": "#/components/schemas/NewsCluster"
+            }
+          },
+          "language": {
+            "type": "string",
+            "description": "Language code of the news articles",
+            "example": "en"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country code of the news source",
+            "example": "us"
+          }
+        },
+        "required": [
+          "top_news",
+          "language",
+          "country"
+        ]
+      },
+      "NewsCluster": {
+        "type": "object",
+        "properties": {
+          "news": {
+            "type": "array",
+            "description": "Array of news articles in this cluster from different sources",
+            "items": {
+              "$ref": "#/components/schemas/NewsArticle"
+            }
+          }
+        },
+        "required": [
+          "news"
+        ]
+      },
+      "NewsArticle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the news article",
+            "example": 224767206
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the news article",
+            "example": "Jury to Begin Deliberations In Trump Trial"
+          },
+          "text": {
+            "type": "string",
+            "description": "Full text content of the news article"
+          },
+          "summary": {
+            "type": "string",
+            "description": "Summary or excerpt of the news article"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the original news article",
+            "example": "https://politicalwire.com/2024/05/28/jury-to-begin-deliberations-in-trump-trial/"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "description": "URL to the article's main image",
+            "example": "https://politicalwire.com/wp-content/uploads/2018/02/PW-podcast-logo.jpg"
+          },
+          "video": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "description": "URL to the article's video content if available"
+          },
+          "publish_date": {
+            "type": "string",
+            "description": "Publication date and time of the article",
+            "example": "2024-05-29 00:10:48"
+          },
+          "author": {
+            "type": "string",
+            "description": "Primary author of the article",
+            "example": "Taegan Goddard"
+          },
+          "authors": {
+            "type": "array",
+            "description": "List of all authors of the article",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "Taegan Goddard"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "url",
+          "publish_date"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header",
+        "description": "API key for authentication. Required for all requests."
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ]
+}

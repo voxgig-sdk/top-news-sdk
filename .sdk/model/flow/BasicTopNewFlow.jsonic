@@ -1,0 +1,22 @@
+# BasicTopNewFlow
+
+main: kit: flow: BasicTopNewFlow:
+{
+  entity: "top_new",
+  kind: "basic",
+  name: "BasicTopNewFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "top_new_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTopNewFlow"
+}
