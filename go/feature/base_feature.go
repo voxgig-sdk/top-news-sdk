@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/top-news-sdk/core"
+	"github.com/voxgig-sdk/top-news-sdk/go/core"
 )
 
 type BaseFeature struct {

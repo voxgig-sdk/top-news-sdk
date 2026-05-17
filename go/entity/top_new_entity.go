@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/top-news-sdk/core"
+	"github.com/voxgig-sdk/top-news-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/top-news-sdk/go/utility/struct"
 )
 
 type TopNewEntity struct {

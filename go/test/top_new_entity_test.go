@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/top-news-sdk"
-	"github.com/voxgig-sdk/top-news-sdk/core"
+	sdk "github.com/voxgig-sdk/top-news-sdk/go"
+	"github.com/voxgig-sdk/top-news-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/top-news-sdk/go/utility/struct"
 )
 
 func TestTopNewEntity(t *testing.T) {
