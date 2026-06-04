@@ -92,7 +92,6 @@ def _top_new_basic_setup(extra):
         "TOPNEWS_TEST_TOP_NEW_ENTID": idmap,
         "TOPNEWS_TEST_LIVE": "FALSE",
         "TOPNEWS_TEST_EXPLAIN": "FALSE",
-        "TOPNEWS_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ def _top_new_basic_setup(extra):
     if env.get("TOPNEWS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("TOPNEWS_APIKEY"),
             },
             extra or {},
         ])

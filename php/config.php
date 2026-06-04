@@ -20,9 +20,6 @@ class TopNewsConfig
             ],
             "options" => [
                 "base" => "https://api.worldnewsapi.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

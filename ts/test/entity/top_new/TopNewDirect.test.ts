@@ -83,14 +83,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'TOPNEWS_TEST_TOP_NEW_ENTID': {},
     'TOPNEWS_TEST_LIVE': 'FALSE',
-    'TOPNEWS_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.TOPNEWS_TEST_LIVE
 
   if (live) {
     const client = new TopNewsSDK({
-      apikey: env.TOPNEWS_APIKEY,
     })
 
     let idmap: any = env['TOPNEWS_TEST_TOP_NEW_ENTID']

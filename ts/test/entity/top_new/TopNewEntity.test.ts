@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'TOP_NEWS_TEST_TOP_NEW_ENTID': idmap,
     'TOP_NEWS_TEST_LIVE': 'FALSE',
     'TOP_NEWS_TEST_EXPLAIN': 'FALSE',
-    'TOP_NEWS_APIKEY': 'NONE',
   })
 
   idmap = env['TOP_NEWS_TEST_TOP_NEW_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new TopNewsSDK(merge([
       {
-        apikey: env.TOP_NEWS_APIKEY,
       },
       extra
     ]))

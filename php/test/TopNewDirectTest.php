@@ -68,14 +68,12 @@ function top_new_direct_setup($mockres)
     $env = Runner::env_override([
         "TOPNEWS_TEST_TOP_NEW_ENTID" => [],
         "TOPNEWS_TEST_LIVE" => "FALSE",
-        "TOPNEWS_APIKEY" => "NONE",
     ]);
 
     $live = $env["TOPNEWS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["TOPNEWS_APIKEY"],
         ];
         $client = new TopNewsSDK($merged_opts);
         return [
