@@ -20,6 +20,9 @@ class TopNewsConfig
             ],
             "options" => [
                 "base" => "https://api.worldnewsapi.com",
+                "auth" => [
+                    "prefix" => "Bearer",
+                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -31,46 +34,48 @@ class TopNewsConfig
         'top_new' => [
           'fields' => [
             [
+              'active' => true,
               'name' => 'new',
               'req' => true,
               'type' => '`$ARRAY`',
-              'active' => true,
               'index$' => 0,
             ],
           ],
           'name' => 'top_new',
           'op' => [
             'list' => [
+              'input' => 'data',
               'name' => 'list',
               'points' => [
                 [
+                  'active' => true,
                   'args' => [
                     'query' => [
                       [
+                        'active' => true,
                         'kind' => 'query',
                         'name' => 'date',
                         'orig' => 'date',
                         'reqd' => false,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'example' => 'en',
                         'kind' => 'query',
                         'name' => 'language',
                         'orig' => 'language',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                       [
+                        'active' => true,
                         'example' => 'us',
                         'kind' => 'query',
                         'name' => 'source_country',
                         'orig' => 'source_country',
                         'reqd' => true,
                         'type' => '`$STRING`',
-                        'active' => true,
                       ],
                     ],
                   ],
@@ -90,11 +95,9 @@ class TopNewsConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'active' => true,
                   'index$' => 0,
                 ],
               ],
-              'input' => 'data',
               'key$' => 'list',
             ],
           ],

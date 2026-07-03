@@ -1,6 +1,11 @@
 # TopNews PHP SDK
 
-The PHP SDK for the TopNews API. Provides an entity-oriented interface using PHP conventions.
+
+
+The PHP SDK for the TopNews API — an entity-oriented client using PHP conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -20,13 +25,15 @@ loading a specific record.
 <?php
 require_once 'topnews_sdk.php';
 
-$client = new TopNewsSDK([]);
+$client = new TopNewsSDK([
+    "apikey" => getenv("TOP-NEWS_APIKEY"),
+]);
 ```
 
 ### 2. List topnews
 
 ```php
-[$result, $err] = $client->TopNew(null)->list(null, null);
+[$result, $err] = $client->TopNew()->list();
 if ($err) { throw new \Exception($err); }
 
 if (is_array($result)) {
@@ -78,11 +85,9 @@ print_r($fetchdef["headers"]);
 Create a mock client for unit testing — no server required:
 
 ```php
-$client = TopNewsSDK::test(null, null);
+$client = TopNewsSDK::test();
 
-[$result, $err] = $client->TopNews(null)->load(
-    ["id" => "test01"], null
-);
+[$result, $err] = $client->TopNews()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -117,6 +122,7 @@ Create a `.env.local` file at the project root:
 
 ```
 TOP-NEWS_TEST_LIVE=TRUE
+TOP-NEWS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -139,6 +145,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

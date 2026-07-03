@@ -86,6 +86,7 @@ function top_new_basic_setup($extra)
         "TOPNEWS_TEST_TOP_NEW_ENTID" => $idmap,
         "TOPNEWS_TEST_LIVE" => "FALSE",
         "TOPNEWS_TEST_EXPLAIN" => "FALSE",
+        "TOPNEWS_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,6 +98,7 @@ function top_new_basic_setup($extra)
     if ($env["TOPNEWS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["TOPNEWS_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -1,21 +1,8 @@
 # TopNews SDK
 
-Retrieve the most important news stories of the day clustered by source from a specific country and language
+Top News API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Top News API
-
-The Top News API is provided by [World News API](https://worldnewsapi.com). It returns the day's most important news stories from a specified country, clustered across multiple sources so that stories covered by more outlets rank higher.
-
-What you get from the API:
-
-- `GET /top-news` — top news for a country, clustered from multiple sources
-- Per-story fields: `id`, `title`, `text`, `summary`, `url`, `image`, `video`, `publish_date`, `author`/`authors`
-- Query parameters: `source-country` (ISO country code, e.g. `us`, `gb`) and `language`
-- Response metadata echoing the requested `language` and `country`
-
-Operational notes: the endpoint requires an API key (see the [authentication docs](https://worldnewsapi.com/docs/authentication/)) and is subject to per-plan quotas and rate limits (see [Rate Limiting & Quotas](https://worldnewsapi.com/docs/quotas-and-rate-limiting/)). CORS is enabled on the primary `/top-news` endpoint.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install top-news-sdk
 luarocks install top-news-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { TopNewsSDK } from 'top-news'
 
-const client = new TopNewsSDK({})
+const client = new TopNewsSDK({
+  apikey: process.env.TOP-NEWS_APIKEY,
+})
 
 // List all topnews
 const topnews = await client.TopNew().list()
+console.log(topnews.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **TopNew** | A clustered top news story for a given country and language, returned by `GET /top-news` with fields such as `title`, `text`, `summary`, `url`, `image`, `publish_date`, and `author`. | `/top-news` |
+| **TopNew** |  | `/top-news` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -111,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from topnews_sdk import TopNewsSDK
 
-client = TopNewsSDK({})
+client = TopNewsSDK({
+    "apikey": os.environ.get("TOP-NEWS_APIKEY"),
+})
 
 # List all topnews
-topnews, err = client.TopNew(None).list(None, None)
+topnews, err = client.TopNew().list()
+print(topnews)
 ```
 
 ### PHP
@@ -125,10 +118,13 @@ topnews, err = client.TopNew(None).list(None, None)
 <?php
 require_once 'topnews_sdk.php';
 
-$client = new TopNewsSDK([]);
+$client = new TopNewsSDK([
+    "apikey" => getenv("TOP-NEWS_APIKEY"),
+]);
 
 // List all topnews
-[$topnews, $err] = $client->TopNew(null)->list(null, null);
+[$topnews, $err] = $client->TopNew()->list();
+print_r($topnews);
 ```
 
 ### Golang
@@ -136,10 +132,13 @@ $client = new TopNewsSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/top-news-sdk/go"
 
-client := sdk.NewTopNewsSDK(map[string]any{})
+client := sdk.NewTopNewsSDK(map[string]any{
+    "apikey": os.Getenv("TOP-NEWS_APIKEY"),
+})
 
 // List all topnews
 topnews, err := client.TopNew(nil).List(nil, nil)
+fmt.Println(topnews)
 ```
 
 ### Ruby
@@ -147,10 +146,13 @@ topnews, err := client.TopNew(nil).List(nil, nil)
 ```ruby
 require_relative "TopNews_sdk"
 
-client = TopNewsSDK.new({})
+client = TopNewsSDK.new({
+  "apikey" => ENV["TOP-NEWS_APIKEY"],
+})
 
 # List all topnews
-topnews, err = client.TopNew(nil).list(nil, nil)
+topnews, err = client.TopNew().list
+puts topnews
 ```
 
 ### Lua
@@ -158,10 +160,13 @@ topnews, err = client.TopNew(nil).list(nil, nil)
 ```lua
 local sdk = require("top-news_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("TOP-NEWS_APIKEY"),
+})
 
 -- List all topnews
-local topnews, err = client:TopNew(nil):list(nil, nil)
+local topnews, err = client:TopNew():list()
+print(topnews)
 ```
 
 ## Unit testing in offline mode
@@ -180,25 +185,21 @@ const result = await client.TopNew().load({ id: 'test01' })
 ### Python
 
 ```python
-client = TopNewsSDK.test(None, None)
-result, err = client.TopNew(None).load(
-    {"id": "test01"}, None
-)
+client = TopNewsSDK.test()
+result, err = client.TopNew().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = TopNewsSDK::test(null, null);
-[$result, $err] = $client->TopNew(null)->load(
-    ["id" => "test01"], null
-);
+$client = TopNewsSDK::test();
+[$result, $err] = $client->TopNew()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.TopNew(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -207,19 +208,15 @@ result, err := client.TopNew(nil).Load(
 ### Ruby
 
 ```ruby
-client = TopNewsSDK.test(nil, nil)
-result, err = client.TopNew(nil).load(
-  { "id" => "test01" }, nil
-)
+client = TopNewsSDK.test
+result, err = client.TopNew().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:TopNew(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:TopNew():load({ id = "test01" })
 ```
 
 ## How it works
@@ -323,11 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Top News API
-
-- Upstream: [https://worldnewsapi.com](https://worldnewsapi.com)
-- API docs: [https://worldnewsapi.com/docs/top-news/](https://worldnewsapi.com/docs/top-news/)
 
 ---
 

@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://api.worldnewsapi.com",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -26,46 +29,48 @@ def make_config():
       "top_new": {
         "fields": [
           {
+            "active": True,
             "name": "new",
             "req": True,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 0,
           },
         ],
         "name": "top_new",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "date",
                       "orig": "date",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "example": "en",
                       "kind": "query",
                       "name": "language",
                       "orig": "language",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "example": "us",
                       "kind": "query",
                       "name": "source_country",
                       "orig": "source_country",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -85,11 +90,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },
