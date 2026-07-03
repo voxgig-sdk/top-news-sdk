@@ -10,7 +10,7 @@ The PHP SDK for the TopNews API — an entity-oriented client using PHP conventi
 
 ## Install
 ```bash
-composer require voxgig/top-news-sdk
+composer require voxgig-sdk/top-news
 ```
 
 

@@ -10,7 +10,7 @@ The Python SDK for the TopNews API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install top-news-sdk
+pip install voxgig-sdk-top-news
 ```
 
 Or install from source:

@@ -10,7 +10,7 @@ The TypeScript SDK for the TopNews API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install top-news
+npm install @voxgig-sdk/top-news
 ```
 ## Tutorial: your first API call
 

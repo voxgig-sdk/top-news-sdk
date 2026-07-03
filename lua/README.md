@@ -10,7 +10,7 @@ The Lua SDK for the TopNews API — an entity-oriented client using Lua conventi
 
 ## Install
 ```bash
-luarocks install top-news-sdk
+luarocks install voxgig-sdk-top-news
 ```
 
 If the module is not yet published, add the source directory to

@@ -10,13 +10,13 @@ The Ruby SDK for the TopNews API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install top-news-sdk
+gem install voxgig-sdk-top-news
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "top-news-sdk"
+gem "voxgig-sdk-top-news"
 ```
 
 Then run:
