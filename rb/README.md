@@ -30,16 +30,14 @@ client = TopNewsSDK.new({
 })
 ```
 
-### 2. List topnews
+### 2. List topnew records
 
 ```ruby
 begin
-  result = client.topnew.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of TopNew records — iterate directly.
+  topnews = client.TopNew.list
+  topnews.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -87,13 +85,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = TopNewsSDK.test
+client = TopNewsSDK.test({
+  "entity" => { "topnew" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.topnew.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+topnew = client.TopNew.load({ "id" => "test01" })
+puts topnew
 ```
 
 ### Use a custom fetch function
@@ -227,7 +229,7 @@ API path: `/top-news`
 
 ### TopNew
 
-Create an instance: `const top_new = client.top_new`
+Create an instance: `top_new = client.TopNew`
 
 #### Operations
 
@@ -243,8 +245,9 @@ Create an instance: `const top_new = client.top_new`
 
 #### Example: List
 
-```ts
-const top_news = await client.top_new.list()
+```ruby
+# list returns an Array of TopNew records (raises on error).
+top_news = client.TopNew.list
 ```
 
 
@@ -319,7 +322,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-topnew = client.topnew
+topnew = client.TopNew
 topnew.load({ "id" => "example_id" })
 
 # topnew.data_get now returns the loaded topnew data

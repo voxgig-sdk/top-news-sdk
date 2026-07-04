@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:top_new():list() / client:top_new():load({ id = ... })
-function TopNewsSDK:top_new(data)
+-- Idiomatic facade: client:TopNew():list() / client:TopNew():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TopNewsSDK:TopNew(data)
   local EntityMod = require("entity.top_new_entity")
   if data == nil then
     if self._top_new == nil then
@@ -253,12 +254,6 @@ function TopNewsSDK:top_new(data)
     end
     return self._top_new
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:top_new() instead.
-function TopNewsSDK:TopNew(data)
-  local EntityMod = require("entity.top_new_entity")
   return EntityMod.new(self, data)
 end
 

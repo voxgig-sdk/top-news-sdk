@@ -34,14 +34,16 @@ client = TopNewsSDK({
 })
 ```
 
-### 2. List topnews
+### 2. List topnew records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.topnew.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    topnews = client.TopNew().list({})
+    for topnew in topnews:
+        print(topnew)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -89,8 +91,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TopNewsSDK.test()
 
-result = client.topnew.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+topnew = client.TopNew().load({"id": "test01"})
+# topnew contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -225,7 +228,7 @@ API path: `/top-news`
 
 ### TopNew
 
-Create an instance: `const top_new = client.top_new`
+Create an instance: `top_new = client.TopNew()`
 
 #### Operations
 
@@ -241,8 +244,8 @@ Create an instance: `const top_new = client.top_new`
 
 #### Example: List
 
-```ts
-const top_news = await client.top_new.list()
+```python
+top_news = client.TopNew().list({})
 ```
 
 
@@ -316,7 +319,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-topnew = client.topnew
+topnew = client.TopNew()
 topnew.load({"id": "example_id"})
 
 # topnew.data_get() now returns the loaded topnew data

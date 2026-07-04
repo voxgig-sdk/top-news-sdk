@@ -81,7 +81,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## TopNewEntity
 
 ```python
-top_new = client.top_new
+top_new = client.TopNew()
 ```
 
 ### Fields
@@ -97,7 +97,9 @@ top_new = client.top_new
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.top_new.list({})
+results = client.TopNew().list({})
+for top_new in results:
+    print(top_new)
 ```
 
 ### Common Methods

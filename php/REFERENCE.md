@@ -86,7 +86,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## TopNewEntity
 
 ```php
-$top_new = $client->top_new();
+$top_new = $client->TopNew();
 ```
 
 ### Fields
@@ -102,7 +102,7 @@ $top_new = $client->top_new();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->top_new()->list([]);
+$results = $client->TopNew()->list([]);
 ```
 
 ### Common Methods

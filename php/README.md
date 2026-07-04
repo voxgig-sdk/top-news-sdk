@@ -31,18 +31,16 @@ $client = new TopNewsSDK([
 ]);
 ```
 
-### 2. List topnews
+### 2. List topnew records
 
 ```php
 try {
-    $result = $client->topnew()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of TopNew records — iterate directly.
+    $topnews = $client->TopNew()->list();
+    foreach ($topnews as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -88,13 +86,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = TopNewsSDK::test();
+$client = TopNewsSDK::test([
+    "entity" => ["topnew" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->topnew()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$topnew = $client->TopNew()->load(["id" => "test01"]);
+print_r($topnew);
 ```
 
 ### Use a custom fetch function
@@ -232,7 +234,7 @@ API path: `/top-news`
 
 ### TopNew
 
-Create an instance: `const top_new = client.top_new`
+Create an instance: `$top_new = $client->TopNew();`
 
 #### Operations
 
@@ -248,8 +250,9 @@ Create an instance: `const top_new = client.top_new`
 
 #### Example: List
 
-```ts
-const top_news = await client.top_new.list()
+```php
+// list() returns an array of TopNew records (throws on error).
+$top_news = $client->TopNew()->list();
 ```
 
 
@@ -324,7 +327,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$topnew = $client->topnew();
+$topnew = $client->TopNew();
 $topnew->load(["id" => "example_id"]);
 
 // $topnew->dataGet() now returns the loaded topnew data

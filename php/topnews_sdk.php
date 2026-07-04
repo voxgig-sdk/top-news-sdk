@@ -233,10 +233,10 @@ class TopNewsSDK
 
     private $_top_new = null;
 
-    // Idiomatic facade: $client->top_new()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias TopNew() (PHP method
-    // names are case-insensitive).
-    public function top_new($data = null)
+    // Canonical facade: $client->TopNew()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->top_new()
+    // resolves here too.
+    public function TopNew($data = null)
     {
         require_once __DIR__ . '/entity/top_new_entity.php';
         if ($data === null) {

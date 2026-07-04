@@ -87,7 +87,7 @@ same parameters as `direct()`. Raises on error.
 ## TopNewEntity
 
 ```ruby
-top_new = client.top_new
+top_new = client.TopNew
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ top_new = client.top_new
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.top_new.list(nil)
+results = client.TopNew.list(nil)
 ```
 
 ### Common Methods

@@ -208,13 +208,7 @@ class TopNewsSDK
   end
 
 
-  # Idiomatic facade: client.top_new.list / client.top_new.load({ "id" => ... })
-  def top_new
-    require_relative 'entity/top_new_entity'
-    @top_new ||= TopNewEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.top_new instead.
+  # Canonical facade: client.TopNew.list / client.TopNew.load({ "id" => ... })
   def TopNew(data = nil)
     require_relative 'entity/top_new_entity'
     TopNewEntity.new(self, data)

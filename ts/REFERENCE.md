@@ -110,7 +110,7 @@ Alias for `TopNewsSDK.test()`.
 ## TopNewEntity
 
 ```ts
-const top_new = client.top_new
+const top_new = client.TopNew()
 ```
 
 ### Fields
@@ -126,7 +126,7 @@ const top_new = client.top_new
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.top_new.list()
+const results = await client.TopNew().list()
 ```
 
 ### Common Methods

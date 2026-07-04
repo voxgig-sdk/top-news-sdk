@@ -28,9 +28,11 @@ const client = new TopNewsSDK({
   apikey: process.env.TOP_NEWS_APIKEY,
 })
 
-// List all topnews
-const topnews = await client.topnew.list()
-console.log(topnews.data)
+// List all topnews (returns TopNew[])
+const topnews = await client.TopNew().list()
+for (const topnew of topnews) {
+  console.log(topnew)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -88,9 +90,10 @@ client = TopNewsSDK({
     "apikey": os.environ.get("TOP_NEWS_APIKEY"),
 })
 
-# List all topnews
-topnews = client.topnew.list()
-print(topnews)
+# List all topnews (returns a list, raises on error)
+topnews = client.TopNew().list({})
+for topnew in topnews:
+    print(topnew)
 ```
 
 ### PHP
@@ -103,8 +106,8 @@ $client = new TopNewsSDK([
     "apikey" => getenv("TOP_NEWS_APIKEY"),
 ]);
 
-// List all topnews (throws on error)
-$topnews = $client->topnew()->list();
+// List all topnews (returns an array; throws on error)
+$topnews = $client->TopNew()->list();
 print_r($topnews);
 ```
 
@@ -131,8 +134,8 @@ client = TopNewsSDK.new({
   "apikey" => ENV["TOP_NEWS_APIKEY"],
 })
 
-# List all topnews
-topnews = client.topnew.list
+# List all topnews (returns an Array; raises on error)
+topnews = client.TopNew.list
 puts topnews
 ```
 
@@ -146,7 +149,7 @@ local client = sdk.new({
 })
 
 -- List all topnews
-local topnews, err = client:topnew():list()
+local topnews, err = client:TopNew():list()
 print(topnews)
 ```
 
@@ -159,22 +162,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = TopNewsSDK.test()
-const result = await client.topnew.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const topnew = await client.TopNew().load({ id: 'test01' })
+// topnew is a bare TopNew populated with mock data
+console.log(topnew)
 ```
 
 ### Python
 
 ```python
 client = TopNewsSDK.test()
-result = client.topnew.load({"id": "test01"})
+topnew = client.TopNew().load({"id": "test01"})
+print(topnew)
 ```
 
 ### PHP
 
 ```php
-$client = TopNewsSDK::test();
-$result = $client->topnew()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = TopNewsSDK::test([
+    "entity" => ["topnew" => ["test01" => ["id" => "test01"]]],
+]);
+$topnew = $client->TopNew()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -189,15 +197,18 @@ result, err := client.TopNew(nil).Load(
 ### Ruby
 
 ```ruby
-client = TopNewsSDK.test
-result = client.topnew.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = TopNewsSDK.test({
+  "entity" => { "topnew" => { "test01" => { "id" => "test01" } } },
+})
+topnew = client.TopNew.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:topnew():load({ id = "test01" })
+local result, err = client:TopNew():load({ id = "test01" })
 ```
 
 ## How it works
@@ -245,6 +256,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

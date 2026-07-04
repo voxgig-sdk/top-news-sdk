@@ -220,25 +220,15 @@ class TopNewsSDK:
         }
 
 
-    @property
-    def top_new(self):
-        """Idiomatic facade: client.top_new.list() / client.top_new.load({"id": ...})."""
-        from entity.top_new_entity import TopNewEntity
-        cached = getattr(self, "_top_new", None)
-        if cached is None:
-            cached = TopNewEntity(self, None)
-            self._top_new = cached
-        return cached
-
-    def TopNew(self, data=None):
-        # Deprecated: use client.top_new instead.
+    def TopNew(self, data=None) -> "TopNewEntity":
+        """Entity factory: client.TopNew().list({}) / client.TopNew().load({"id": ...})."""
         from entity.top_new_entity import TopNewEntity
         return TopNewEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "TopNewsSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class TopNewsSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.top_new_entity import TopNewEntity
