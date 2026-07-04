@@ -50,8 +50,7 @@ class TestTopNewEntity:
         top_new_ref01_ent = client.TopNew(None)
         top_new_ref01_match = {}
 
-        top_new_ref01_list_result, err = top_new_ref01_ent.list(top_new_ref01_match, None)
-        assert err is None
+        top_new_ref01_list_result = top_new_ref01_ent.list(top_new_ref01_match, None)
         assert isinstance(top_new_ref01_list_result, list)
 
 

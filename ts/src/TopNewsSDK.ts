@@ -2,6 +2,8 @@
 
 import { TopNewEntity } from './entity/TopNewEntity'
 
+export type * from './TopNewsTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class TopNewsSDK {
 
 
 
+  _top_new?: TopNewEntity
+
+  // Idiomatic facade: `client.top_new.list()` / `client.top_new.load({ id })`.
+  get top_new(): TopNewEntity {
+    return (this._top_new ??= new TopNewEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.top_new` instead. */
   TopNew(data?: any) {
     const self = this
     return new TopNewEntity(self,data)

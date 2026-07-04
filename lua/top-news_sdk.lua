@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:top_new():list() / client:top_new():load({ id = ... })
+function TopNewsSDK:top_new(data)
+  local EntityMod = require("entity.top_new_entity")
+  if data == nil then
+    if self._top_new == nil then
+      self._top_new = EntityMod.new(self, nil)
+    end
+    return self._top_new
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:top_new() instead.
 function TopNewsSDK:TopNew(data)
   local EntityMod = require("entity.top_new_entity")
   return EntityMod.new(self, data)

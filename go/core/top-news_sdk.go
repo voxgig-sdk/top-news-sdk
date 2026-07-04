@@ -245,6 +245,9 @@ func (sdk *TopNewsSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// TopNew returns a TopNew entity bound to this client.
+// Idiomatic usage: client.TopNew(nil).List(nil, nil) or
+// client.TopNew(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TopNewsSDK) TopNew(data map[string]any) TopNewsEntity {
 	return NewTopNewEntityFunc(sdk, data)
 }

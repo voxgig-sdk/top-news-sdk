@@ -43,8 +43,7 @@ class TopNewEntityTest < Minitest::Test
     top_new_ref01_ent = client.TopNew(nil)
     top_new_ref01_match = {}
 
-    top_new_ref01_list_result, err = top_new_ref01_ent.list(top_new_ref01_match, nil)
-    assert_nil err
+    top_new_ref01_list_result = top_new_ref01_ent.list(top_new_ref01_match, nil)
     assert top_new_ref01_list_result.is_a?(Array)
 
   end

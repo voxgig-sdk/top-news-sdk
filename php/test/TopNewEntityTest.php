@@ -50,8 +50,7 @@ class TopNewEntityTest extends TestCase
         $top_new_ref01_ent = $client->TopNew(null);
         $top_new_ref01_match = [];
 
-        [$top_new_ref01_list_result, $err] = $top_new_ref01_ent->list($top_new_ref01_match, null);
-        $this->assertNull($err);
+        $top_new_ref01_list_result = $top_new_ref01_ent->list($top_new_ref01_match, null);
         $this->assertIsArray($top_new_ref01_list_result);
 
     }

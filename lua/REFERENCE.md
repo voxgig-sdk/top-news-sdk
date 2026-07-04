@@ -84,7 +84,7 @@ same parameters as `direct()`.
 ## TopNewEntity
 
 ```lua
-local top_new = client:TopNew(nil)
+local top_new = client:top_new(nil)
 ```
 
 ### Fields
@@ -100,7 +100,7 @@ local top_new = client:TopNew(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:TopNew():list()
+local results, err = client:top_new():list()
 ```
 
 ### Common Methods

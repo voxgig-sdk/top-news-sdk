@@ -9,9 +9,12 @@ The TypeScript SDK for the TopNews API — a type-safe, entity-oriented client w
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/top-news
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/top-news-sdk/releases](https://github.com/voxgig-sdk/top-news-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TopNewsSDK } from 'top-news'
+import { TopNewsSDK } from '@voxgig-sdk/top-news'
 
 const client = new TopNewsSDK({
-  apikey: process.env.TOP-NEWS_APIKEY,
+  apikey: process.env.TOP_NEWS_APIKEY,
 })
 ```
 
 ### 2. List topnews
 
 ```ts
-const result = await client.TopNew().list()
+const result = await client.topnew.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TopNewsSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.topnew.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -98,7 +101,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.topnew
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,8 +138,8 @@ const client = new TopNewsSDK({
 Create a `.env.local` file at the project root:
 
 ```
-TOP-NEWS_TEST_LIVE=TRUE
-TOP-NEWS_APIKEY=<your-key>
+TOP_NEWS_TEST_LIVE=TRUE
+TOP_NEWS_APIKEY=<your-key>
 ```
 
 Then run:
@@ -268,7 +271,7 @@ API path: `/top-news`
 
 ### TopNew
 
-Create an instance: `const top_new = client.TopNew()`
+Create an instance: `const top_new = client.top_new`
 
 #### Operations
 
@@ -285,7 +288,7 @@ Create an instance: `const top_new = client.TopNew()`
 #### Example: List
 
 ```ts
-const top_news = await client.TopNew().list()
+const top_news = await client.top_new.list()
 ```
 
 
@@ -346,7 +349,7 @@ top-news/
 Import the SDK from the package root:
 
 ```ts
-import { TopNewsSDK } from 'top-news'
+import { TopNewsSDK } from '@voxgig-sdk/top-news'
 ```
 
 ### Entity state
@@ -356,11 +359,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const topnew = client.topnew
+await topnew.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// topnew.data() now returns the loaded topnew data
+// topnew.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

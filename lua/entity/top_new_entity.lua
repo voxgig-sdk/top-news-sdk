@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch TopNewListMatch
+---@param ctrl? table
+---@return TopNew[]
+---@return string? err
 function TopNewEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
