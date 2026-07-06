@@ -91,7 +91,7 @@ local top_new = client:TopNew(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | ``$ARRAY`` | Yes |  |
+| `new` | `table` | Yes |  |
 
 ### Operations
 

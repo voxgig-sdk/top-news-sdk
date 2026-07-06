@@ -8,7 +8,7 @@ Complete API reference for the TopNews Python SDK.
 ### Constructor
 
 ```python
-from top-news_sdk import TopNewsSDK
+from topnews_sdk import TopNewsSDK
 
 client = TopNewsSDK(options)
 ```
@@ -88,16 +88,16 @@ top_new = client.TopNew()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | ``$ARRAY`` | Yes |  |
+| `new` | `list` | Yes |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.TopNew().list({})
+results = client.TopNew().list()
 for top_new in results:
     print(top_new)
 ```

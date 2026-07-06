@@ -9,5 +9,7 @@ export interface TopNew {
   new: any[]
 }
 
-export type TopNewListMatch = Partial<TopNew>
+export interface TopNewListMatch {
+  new?: any[]
+}
 

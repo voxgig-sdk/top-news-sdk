@@ -17,7 +17,7 @@ TopNew = Struct.new(
   keyword_init: true
 )
 
-# Match filter for TopNew#list (any subset of TopNew fields).
+# Request payload for TopNew#list.
 #
 # @!attribute [rw] new
 #   @return [Array, nil]

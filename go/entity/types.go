@@ -13,8 +13,7 @@ type TopNew struct {
 	New []any `json:"new"`
 }
 
-// TopNewListMatch mirrors the top_new fields as an all-optional match
-// filter (Go analog of Partial<TopNew>).
+// TopNewListMatch is the typed request payload for TopNew.ListTyped.
 type TopNewListMatch struct {
 	New *[]any `json:"new,omitempty"`
 }

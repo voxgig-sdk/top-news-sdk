@@ -117,7 +117,7 @@ const top_new = client.TopNew()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | ``$ARRAY`` | Yes |  |
+| `new` | `any[]` | Yes |  |
 
 ### Operations
 

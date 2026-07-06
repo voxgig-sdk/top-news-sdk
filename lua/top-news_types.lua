@@ -10,6 +10,7 @@
 ---@field new table
 
 ---@class TopNewListMatch
+---@field new? table
 
 local M = {}
 

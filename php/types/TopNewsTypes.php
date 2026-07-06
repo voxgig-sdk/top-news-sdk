@@ -18,7 +18,7 @@ class TopNew
     public array $new;
 }
 
-/** Match filter for TopNew#list (any subset of TopNew fields). */
+/** Request payload for TopNew#list. */
 class TopNewListMatch
 {
     public ?array $new = null;

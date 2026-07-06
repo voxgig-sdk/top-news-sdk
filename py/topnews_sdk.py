@@ -221,7 +221,7 @@ class TopNewsSDK:
 
 
     def TopNew(self, data=None) -> "TopNewEntity":
-        """Entity factory: client.TopNew().list({}) / client.TopNew().load({"id": ...})."""
+        """Entity factory: client.TopNew().list() / client.TopNew().load({"id": ...})."""
         from entity.top_new_entity import TopNewEntity
         return TopNewEntity(self, data)
 

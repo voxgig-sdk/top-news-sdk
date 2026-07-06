@@ -98,7 +98,7 @@ top_new := client.TopNew(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | ``$ARRAY`` | Yes |  |
+| `new` | `[]any` | Yes |  |
 
 ### Operations
 
