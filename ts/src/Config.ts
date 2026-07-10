@@ -39,7 +39,7 @@ class Config {
     base: 'https://api.worldnewsapi.com',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

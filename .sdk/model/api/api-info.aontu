@@ -8,16 +8,23 @@ main: {
         url: "https://worldnewsapi.com/docs/top-news/"
       }
       description: "This API provides the top news articles from a specified country in a specific language for a given date. The news articles are aggregated from multiple sources, and the ranking is based on the number of sources represented in each cluster."
+      security: {
+        in: "header"
+        name: "x-api-key"
+        prefix: ""
+        scheme: "apiKey"
+        type: "apiKey"
+      }
       servers: [
         {
           description: "Production server"
           url: "https://api.worldnewsapi.com"
         }
       ]
+      summary: "This API provides the top news articles from a specified country in a specific language for a given date."
       termsOfService: "https://worldnewsapi.com/docs/top-news/"
       title: "Top News API"
       version: "1.0.0"
+      website: "https://worldnewsapi.com"
     }
   }
-}
-

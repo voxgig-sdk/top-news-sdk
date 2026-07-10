@@ -91,7 +91,8 @@ same parameters as `Direct()`.
 ## TopNewEntity
 
 ```go
-top_new := client.TopNew(nil)
+topNew := client.TopNew(nil)
+fmt.Println(topNew.GetName()) // "top_new"
 ```
 
 ### Fields
@@ -108,6 +109,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.TopNew(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

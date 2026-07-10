@@ -53,12 +53,12 @@ func main() {
         "apikey": os.Getenv("TOP_NEWS_APIKEY"),
     })
 
-    // List topnew records — the value is the array of records itself.
-    topnews, err := client.TopNew(nil).List(nil, nil)
+    // List topNew records — the value is the array of records itself.
+    topNews, err := client.TopNew(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range topnews.([]any) {
+    for _, item := range topNews.([]any) {
         fmt.Println(item)
     }
 }
@@ -140,13 +140,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-topnew, err := client.TopNew(nil).List(
+topNew, err := client.TopNew(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(topnew) // the returned mock data
+fmt.Println(topNew) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -252,9 +252,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    topnew, err := client.TopNew(nil).List(map[string]any{/* fields */}, nil)
+    topNew, err := client.TopNew(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // topnew is the returned record
+    // topNew is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -278,7 +278,7 @@ API path: `/top-news`
 
 ### TopNew
 
-Create an instance: `top_new := client.TopNew(nil)`
+Create an instance: `topNew := client.TopNew(nil)`
 
 #### Operations
 
@@ -295,11 +295,11 @@ Create an instance: `top_new := client.TopNew(nil)`
 #### Example: List
 
 ```go
-top_news, err := client.TopNew(nil).List(nil, nil)
+topNews, err := client.TopNew(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(top_news) // the array of records
+fmt.Println(topNews) // the array of records
 ```
 
 

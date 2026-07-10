@@ -16,7 +16,7 @@ module TopNewsConfig
       "options" => {
         "base" => "https://api.worldnewsapi.com",
         "auth" => {
-          "prefix" => "Bearer",
+          "prefix" => "",
         },
         "headers" => {
           "content-type" => "application/json",
