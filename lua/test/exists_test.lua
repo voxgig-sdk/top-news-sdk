@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- TopNews SDK exists test
 
 local sdk = require("top-news_sdk")
 
