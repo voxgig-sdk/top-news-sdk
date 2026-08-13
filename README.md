@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = TopNewsSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = TopNewsSDK.test({
+  entity: {
+    top_new: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const topnews = await client.TopNew().list()
-// topnews is an array of bare TopNew records populated with mock data
+// topnews is an array of TopNew entities, populated with mock data
+// — call topnews[0].data() for the record itself
 console.log(topnews)
 ```
 
@@ -112,7 +121,7 @@ const client = new TopNewsSDK({
   apikey: process.env.TOP_NEWS_APIKEY,
 })
 
-// List all topnews (returns TopNew[])
+// List all topnews (returns TopNewEntity[] — .data() for the record)
 const topnews = await client.TopNew().list()
 for (const topnew of topnews) {
   console.log(topnew)
@@ -356,6 +365,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://worldnewsapi.com/docs/top-news/](https://worldnewsapi.com/docs/top-news/)
 

@@ -39,7 +39,7 @@ begin
   # list returns an Array of TopNew records — iterate directly.
   topnews = client.TopNew.list
   topnews.each do |item|
-    puts "#{item["new"]}"
+    puts "#{item["news"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = TopNewsSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 topnew = client.TopNew.list()
 puts topnew
 ```
@@ -240,7 +241,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `new` |  |
+| `news` |  |
 
 Operations: List.
 
@@ -265,7 +266,7 @@ Create an instance: `top_new = client.TopNew`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `Array` |  |
+| `news` | `Array` |  |
 
 #### Example: List
 

@@ -45,7 +45,7 @@ local topnews, err = client:TopNew():list()
 if err then error(err) end
 
 for _, item in ipairs(topnews) do
-  print(item["new"])
+  print(item["news"])
 end
 ```
 
@@ -222,9 +222,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local top_new, err = client:TopNew():load()
+    local top_new, err = client:TopNew():list()
     if err then error(err) end
-    -- top_new is the loaded record
+    -- top_new is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -235,7 +235,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `new` |  |
+| `news` |  |
 
 Operations: List.
 
@@ -260,7 +260,7 @@ Create an instance: `local top_new = client:TopNew(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `table` |  |
+| `news` | `table` |  |
 
 #### Example: List
 

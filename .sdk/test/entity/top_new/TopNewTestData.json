@@ -2,20 +2,20 @@
   "existing": {
     "top_new": {
       "TOP_NEW00": {
-        "new": []
+        "news": []
       },
       "TOP_NEW01": {
-        "new": []
+        "news": []
       },
       "TOP_NEW02": {
-        "new": []
+        "news": []
       }
     }
   },
   "new": {
     "top_new": {
       "top_new_ref01": {
-        "new": []
+        "news": []
       }
     }
   }

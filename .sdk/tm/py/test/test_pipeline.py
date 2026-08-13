@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import TopNewsSDK
-from core.error import TopNewsError
-from core.result import TopNewsResult
-from core.response import TopNewsResponse
-from core.spec import TopNewsSpec
-from feature.base_feature import TopNewsBaseFeature
+from projectname_sdk.core.error import TopNewsError
+from projectname_sdk.core.result import TopNewsResult
+from projectname_sdk.core.response import TopNewsResponse
+from projectname_sdk.core.spec import TopNewsSpec
+from projectname_sdk.feature.base_feature import TopNewsBaseFeature
 
 
 def _client():

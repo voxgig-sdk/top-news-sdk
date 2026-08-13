@@ -37,7 +37,9 @@ const client = new TopNewsSDK({
 
 ### 2. List topnew records
 
-`list()` resolves to an array of TopNew objects — iterate it directly:
+`list()` resolves to an array of TopNew ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const topnews = await client.TopNew().list()
@@ -122,7 +124,8 @@ Create a mock client for unit testing — no server required:
 const client = TopNewsSDK.test()
 
 const topnew = await client.TopNew().list()
-// topnew is a bare entity populated with mock response data
+// topnew is the entity, populated with mock response data
+// — call topnew.data() for the record itself
 console.log(topnew)
 ```
 
@@ -290,7 +293,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `new` |  |
+| `news` |  |
 
 Operations: list.
 
@@ -315,7 +318,7 @@ Create an instance: `const top_new = client.TopNew()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `any[]` |  |
+| `news` | `any[]` |  |
 
 #### Example: List
 

@@ -15,12 +15,12 @@ declare(strict_types=1);
 /** TopNew entity data model. */
 class TopNew
 {
-    public array $new;
+    public array $news;
 }
 
 /** Request payload for TopNew#list. */
 class TopNewListMatch
 {
-    public ?array $new = null;
+    public ?array $news = null;
 }
 

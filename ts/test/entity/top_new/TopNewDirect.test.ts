@@ -19,11 +19,15 @@ import {
 describe('TopNewDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when TOPNEWS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('TOPNEWS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when TOP_NEWS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('TOP_NEWS_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new TopNewsSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -81,19 +85,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'TOPNEWS_TEST_TOP_NEW_ENTID': {},
-    'TOPNEWS_TEST_LIVE': 'FALSE',
-    'TOPNEWS_APIKEY': 'NONE',
+    'TOP_NEWS_TEST_TOP_NEW_ENTID': {},
+    'TOP_NEWS_TEST_LIVE': 'FALSE',
+    'TOP_NEWS_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.TOPNEWS_TEST_LIVE
+  const live = 'TRUE' === env.TOP_NEWS_TEST_LIVE
 
   if (live) {
     const client = new TopNewsSDK({
-      apikey: env.TOPNEWS_APIKEY,
+      apikey: env.TOP_NEWS_APIKEY,
     })
 
-    let idmap: any = env['TOPNEWS_TEST_TOP_NEW_ENTID']
+    let idmap: any = env['TOP_NEWS_TEST_TOP_NEW_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

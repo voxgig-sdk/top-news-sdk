@@ -8,6 +8,7 @@ guide: {
   entity: top_new: {
     path: "/top-news": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.top_news`")|top
     }
   }
 

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from topnews_sdk.utility.voxgig_struct import voxgig_struct as vs
 from topnews_sdk import TopNewsSDK
-from core import helpers
+from topnews_sdk.core import helpers
 from test import runner
 
 
@@ -58,16 +58,16 @@ def _top_new_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "TOPNEWS_TEST_TOP_NEW_ENTID": {},
-        "TOPNEWS_TEST_LIVE": "FALSE",
-        "TOPNEWS_APIKEY": "NONE",
+        "TOP_NEWS_TEST_TOP_NEW_ENTID": {},
+        "TOP_NEWS_TEST_LIVE": "FALSE",
+        "TOP_NEWS_APIKEY": "NONE",
     })
 
-    live = env.get("TOPNEWS_TEST_LIVE") == "TRUE"
+    live = env.get("TOP_NEWS_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("TOPNEWS_APIKEY"),
+            "apikey": env.get("TOP_NEWS_APIKEY"),
         }
         client = TopNewsSDK(merged_opts)
         return {

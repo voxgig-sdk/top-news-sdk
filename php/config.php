@@ -35,7 +35,7 @@ class TopNewsConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'new',
+              'name' => 'news',
               'req' => true,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -79,6 +79,7 @@ class TopNewsConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/top-news',
                   'parts' => [
@@ -93,7 +94,7 @@ class TopNewsConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.top_news`',
                   ],
                   'index$' => 0,
                 ],

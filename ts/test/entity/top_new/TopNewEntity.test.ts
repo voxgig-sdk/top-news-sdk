@@ -26,8 +26,8 @@ import {
 describe('TopNewEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when TOPNEWS_TEST_LIVE=TRUE.
-  afterEach(liveDelay('TOPNEWS_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when TOP_NEWS_TEST_LIVE=TRUE.
+  afterEach(liveDelay('TOP_NEWS_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = TopNewsSDK.test()
@@ -63,7 +63,7 @@ describe('TopNewEntity', async () => {
     const top_new_ref01_ent = client.TopNew()
     const top_new_ref01_match: any = {}
 
-    const top_new_ref01_list = await top_new_ref01_ent.list(top_new_ref01_match)
+    const top_new_ref01_list = (await top_new_ref01_ent.list(top_new_ref01_match)).map((e: any) => e.data())
 
 
   })

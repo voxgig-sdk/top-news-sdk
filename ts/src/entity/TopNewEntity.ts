@@ -37,7 +37,7 @@ class TopNewEntity extends TopNewsEntityBase<TopNew> {
 
 
 
-  async list(this: any, reqmatch?: TopNewListMatch, ctrl?: Control): Promise<TopNew[]> {
+  async list(this: any, reqmatch?: TopNewListMatch, ctrl?: Control): Promise<TopNewEntity[]> {
 
     const utility = this._utility
 

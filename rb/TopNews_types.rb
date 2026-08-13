@@ -10,19 +10,19 @@
 
 # TopNew entity data model.
 #
-# @!attribute [rw] new
+# @!attribute [rw] news
 #   @return [Array]
 TopNew = Struct.new(
-  :new,
+  :news,
   keyword_init: true
 )
 
 # Request payload for TopNew#list.
 #
-# @!attribute [rw] new
+# @!attribute [rw] news
 #   @return [Array, nil]
 TopNewListMatch = Struct.new(
-  :new,
+  :news,
   keyword_init: true
 )
 

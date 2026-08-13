@@ -99,7 +99,7 @@ fmt.Println(topNew.GetName()) // "top_new"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `[]any` | Yes |  |
+| `news` | `[]any` | Yes |  |
 
 ### Operations
 

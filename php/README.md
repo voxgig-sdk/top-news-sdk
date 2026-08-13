@@ -40,7 +40,7 @@ try {
     // list() returns an array of TopNew records — iterate directly.
     $topnews = $client->TopNew()->list();
     foreach ($topnews as $item) {
-        echo $item["new"] . "\n";
+        echo $item["news"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -127,7 +127,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = TopNewsSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $topnew = $client->TopNew()->list();
 print_r($topnew);
 ```
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -250,7 +251,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `new` |  |
+| `news` |  |
 
 Operations: List.
 
@@ -275,7 +276,7 @@ Create an instance: `$top_new = $client->TopNew();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `array` |  |
+| `news` | `array` |  |
 
 #### Example: List
 

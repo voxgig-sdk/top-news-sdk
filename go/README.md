@@ -265,7 +265,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"new"` |  |
+| `"news"` |  |
 
 Operations: List.
 
@@ -290,7 +290,7 @@ Create an instance: `topNew := client.TopNew(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `new` | `[]any` |  |
+| `news` | `[]any` |  |
 
 #### Example: List
 

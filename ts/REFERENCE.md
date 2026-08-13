@@ -117,7 +117,7 @@ const top_new = client.TopNew()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `any[]` | Yes |  |
+| `news` | `any[]` | Yes |  |
 
 ### Operations
 

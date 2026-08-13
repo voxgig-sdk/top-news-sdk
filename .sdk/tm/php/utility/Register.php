@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ TopNewsUtility::setRegistrar(function (TopNewsUtility $u): void {
     $u->prepare_params = [TopNewsPrepareParams::class, 'call'];
     $u->prepare_path = [TopNewsPreparePath::class, 'call'];
     $u->prepare_query = [TopNewsPrepareQuery::class, 'call'];
+    $u->graphql_body = [TopNewsGraphql::class, 'body'];
+    $u->graphql_errors = [TopNewsGraphql::class, 'errors'];
     $u->result_basic = [TopNewsResultBasic::class, 'call'];
     $u->result_body = [TopNewsResultBody::class, 'call'];
     $u->result_headers = [TopNewsResultHeaders::class, 'call'];

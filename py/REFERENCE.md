@@ -88,7 +88,7 @@ top_new = client.TopNew()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `list` | Yes |  |
+| `news` | `list` | Yes |  |
 
 ### Operations
 

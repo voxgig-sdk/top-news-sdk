@@ -7,10 +7,10 @@
 -- edit by hand.
 
 ---@class TopNew
----@field new table
+---@field news table
 
 ---@class TopNewListMatch
----@field new? table
+---@field news? table
 
 local M = {}
 

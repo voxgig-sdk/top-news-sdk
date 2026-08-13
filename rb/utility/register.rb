@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ TopNewsUtility.registrar = ->(u) {
   u.prepare_params = TopNewsUtilities::PrepareParams
   u.prepare_path = TopNewsUtilities::PreparePath
   u.prepare_query = TopNewsUtilities::PrepareQuery
+  u.graphql_body = TopNewsUtilities::GraphqlBody
+  u.graphql_errors = TopNewsUtilities::GraphqlErrors
   u.result_basic = TopNewsUtilities::ResultBasic
   u.result_body = TopNewsUtilities::ResultBody
   u.result_headers = TopNewsUtilities::ResultHeaders

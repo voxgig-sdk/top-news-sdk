@@ -94,7 +94,7 @@ top_new = client.TopNew
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `Array` | Yes |  |
+| `news` | `Array` | Yes |  |
 
 ### Operations
 

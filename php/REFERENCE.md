@@ -93,7 +93,7 @@ $top_new = $client->TopNew();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `new` | `array` | Yes |  |
+| `news` | `array` | Yes |  |
 
 ### Operations
 

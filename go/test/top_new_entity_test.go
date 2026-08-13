@@ -92,7 +92,7 @@ func TestTopNewEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set TOPNEWS_TEST_TOP_NEW_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set TOP_NEWS_TEST_TOP_NEW_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -160,38 +160,38 @@ func top_newBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("TOPNEWS_TEST_TOP_NEW_ENTID")
+	entidEnvRaw := os.Getenv("TOP_NEWS_TEST_TOP_NEW_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"TOPNEWS_TEST_TOP_NEW_ENTID": idmap,
-		"TOPNEWS_TEST_LIVE":      "FALSE",
-		"TOPNEWS_TEST_EXPLAIN":   "FALSE",
-		"TOPNEWS_APIKEY":         "NONE",
+		"TOP_NEWS_TEST_TOP_NEW_ENTID": idmap,
+		"TOP_NEWS_TEST_LIVE":      "FALSE",
+		"TOP_NEWS_TEST_EXPLAIN":   "FALSE",
+		"TOP_NEWS_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["TOPNEWS_TEST_TOP_NEW_ENTID"])
+	idmapResolved := core.ToMapAny(env["TOP_NEWS_TEST_TOP_NEW_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["TOPNEWS_TEST_LIVE"] == "TRUE" {
+	if env["TOP_NEWS_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["TOPNEWS_APIKEY"],
+				"apikey": env["TOP_NEWS_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewTopNewsSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["TOPNEWS_TEST_LIVE"] == "TRUE"
+	live := env["TOP_NEWS_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["TOPNEWS_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["TOP_NEWS_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

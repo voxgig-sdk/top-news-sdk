@@ -6,7 +6,7 @@ main: kit: entity: top_new: {
 
   fields: [
     {
-      name: "new"
+      name: "news"
       req: true
       type: "`$ARRAY`"
     }
@@ -59,7 +59,7 @@ main: kit: entity: top_new: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.top_news`"
           }
         }
       ]

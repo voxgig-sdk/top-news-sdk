@@ -6,10 +6,10 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface TopNew {
-  new: any[]
+  news: any[]
 }
 
 export interface TopNewListMatch {
-  new?: any[]
+  news?: any[]
 }
 

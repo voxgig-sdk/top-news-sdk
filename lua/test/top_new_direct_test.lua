@@ -61,16 +61,16 @@ function top_new_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["TOPNEWS_TEST_TOP_NEW_ENTID"] = {},
-    ["TOPNEWS_TEST_LIVE"] = "FALSE",
-    ["TOPNEWS_APIKEY"] = "NONE",
+    ["TOP_NEWS_TEST_TOP_NEW_ENTID"] = {},
+    ["TOP_NEWS_TEST_LIVE"] = "FALSE",
+    ["TOP_NEWS_APIKEY"] = "NONE",
   })
 
-  local live = env["TOPNEWS_TEST_LIVE"] == "TRUE"
+  local live = env["TOP_NEWS_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["TOPNEWS_APIKEY"],
+      apikey = env["TOP_NEWS_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

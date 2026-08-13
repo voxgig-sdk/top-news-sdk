@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'TopNews',
   }
 
 
@@ -60,7 +60,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "new",
+          "name": "news",
           "req": true,
           "type": "`$ARRAY`",
           "index$": 0
@@ -104,6 +104,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/top-news",
               "parts": [
@@ -118,7 +119,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.top_news`"
               },
               "index$": 0
             }
