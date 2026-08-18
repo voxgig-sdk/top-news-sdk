@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://api.worldnewsapi.com',
+    base: "https://api.worldnewsapi.com",
 
     auth: {
       prefix: '',
@@ -59,11 +59,9 @@ class Config {
     "top_new": {
       "fields": [
         {
-          "active": true,
           "name": "news",
           "req": true,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         }
       ],
       "name": "top_new",
@@ -73,19 +71,15 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "date",
                     "orig": "date",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "en",
                     "kind": "query",
                     "name": "language",
@@ -94,7 +88,6 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "us",
                     "kind": "query",
                     "name": "source_country",
@@ -120,11 +113,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.top_news`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {

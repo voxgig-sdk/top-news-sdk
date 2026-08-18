@@ -28,7 +28,7 @@ class TopNewsSDK
     utility = TopNewsUtility.new
     @_utility = utility
 
-    config = TopNewsConfig.make_config
+    config = TopNewsConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

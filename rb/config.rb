@@ -1,6 +1,20 @@
 # TopNews SDK configuration
 
 module TopNewsConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -29,11 +43,9 @@ module TopNewsConfig
         "top_new" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "news",
               "req" => true,
               "type" => "`$ARRAY`",
-              "index$" => 0,
             },
           ],
           "name" => "top_new",
@@ -43,19 +55,15 @@ module TopNewsConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "date",
                         "orig" => "date",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => "en",
                         "kind" => "query",
                         "name" => "language",
@@ -64,7 +72,6 @@ module TopNewsConfig
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => "us",
                         "kind" => "query",
                         "name" => "source_country",
@@ -91,10 +98,8 @@ module TopNewsConfig
                     "req" => "`reqdata`",
                     "res" => "`body.top_news`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {

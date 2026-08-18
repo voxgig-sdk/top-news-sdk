@@ -40,7 +40,7 @@ class TopNewsSDK
         $utility = new TopNewsUtility();
         $this->_utility = $utility;
 
-        $config = TopNewsConfig::make_config();
+        $config = TopNewsConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
