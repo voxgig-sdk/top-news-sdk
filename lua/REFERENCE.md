@@ -91,7 +91,7 @@ local top_new = client:TopNew(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `news` | `table` | Yes |  |
+| `news` | `table` | Yes | Array of news articles in this cluster from different sources |
 
 ### Operations
 

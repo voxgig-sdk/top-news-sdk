@@ -251,7 +251,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `news` |  |
+| `news` | Array of news articles in this cluster from different sources |
 
 Operations: List.
 
@@ -276,7 +276,7 @@ Create an instance: `$top_new = $client->TopNew();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `news` | `array` |  |
+| `news` | `array` | Array of news articles in this cluster from different sources |
 
 #### Example: List
 

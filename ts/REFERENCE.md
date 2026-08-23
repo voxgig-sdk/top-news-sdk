@@ -117,7 +117,7 @@ const top_new = client.TopNew()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `news` | `any[]` | Yes |  |
+| `news` | `any[]` | Yes | Array of news articles in this cluster from different sources |
 
 ### Operations
 

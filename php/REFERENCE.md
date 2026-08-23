@@ -93,7 +93,7 @@ $top_new = $client->TopNew();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `news` | `array` | Yes |  |
+| `news` | `array` | Yes | Array of news articles in this cluster from different sources |
 
 ### Operations
 

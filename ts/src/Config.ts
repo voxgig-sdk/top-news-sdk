@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'TopNews',
+        slug: "top-news",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -61,6 +72,7 @@ class Config {
         {
           "name": "news",
           "req": true,
+          "short": "Array of news articles in this cluster from different sources",
           "type": "`$ARRAY`"
         }
       ],

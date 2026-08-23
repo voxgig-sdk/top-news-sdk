@@ -33,6 +33,9 @@ class TopNewsConfig
         return [
             "main" => [
                 "name" => "TopNews",
+                "slug" => "top-news",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -59,6 +62,7 @@ class TopNewsConfig
             [
               'name' => 'news',
               'req' => true,
+              'short' => 'Array of news articles in this cluster from different sources',
               'type' => '`$ARRAY`',
             ],
           ],

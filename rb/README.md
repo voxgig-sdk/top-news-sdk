@@ -241,7 +241,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `news` |  |
+| `news` | Array of news articles in this cluster from different sources |
 
 Operations: List.
 
@@ -266,7 +266,7 @@ Create an instance: `top_new = client.TopNew`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `news` | `Array` |  |
+| `news` | `Array` | Array of news articles in this cluster from different sources |
 
 #### Example: List
 

@@ -88,7 +88,7 @@ top_new = client.TopNew()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `news` | `list` | Yes |  |
+| `news` | `list` | Yes | Array of news articles in this cluster from different sources |
 
 ### Operations
 

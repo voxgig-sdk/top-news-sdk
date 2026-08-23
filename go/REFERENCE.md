@@ -99,7 +99,7 @@ fmt.Println(topNew.GetName()) // "top_new"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `news` | `[]any` | Yes |  |
+| `news` | `[]any` | Yes | Array of news articles in this cluster from different sources |
 
 ### Operations
 

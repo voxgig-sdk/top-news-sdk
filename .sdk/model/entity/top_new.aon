@@ -8,6 +8,7 @@ main: kit: entity: top_new: {
     {
       name: "news"
       req: true
+      short: "Array of news articles in this cluster from different sources"
       type: "`$ARRAY`"
     }
   ]

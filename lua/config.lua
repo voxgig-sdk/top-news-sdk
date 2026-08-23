@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "TopNews",
+      slug = "top-news",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -33,6 +36,7 @@ local function make_config()
           {
             ["name"] = "news",
             ["req"] = true,
+            ["short"] = "Array of news articles in this cluster from different sources",
             ["type"] = "`$ARRAY`",
           },
         },

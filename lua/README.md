@@ -235,7 +235,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `news` |  |
+| `news` | Array of news articles in this cluster from different sources |
 
 Operations: List.
 
@@ -260,7 +260,7 @@ Create an instance: `local top_new = client:TopNew(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `news` | `table` |  |
+| `news` | `table` | Array of news articles in this cluster from different sources |
 
 #### Example: List
 
