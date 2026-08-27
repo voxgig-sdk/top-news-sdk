@@ -28,6 +28,7 @@ module TopNewsConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {

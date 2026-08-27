@@ -42,6 +42,7 @@ class TopNewsConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
