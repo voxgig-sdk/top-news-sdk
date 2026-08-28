@@ -20,5 +20,10 @@ class TopNew(TypedDict):
     news: list
 
 
-class TopNewListMatch(TypedDict, total=False):
-    news: list
+class TopNewListMatchRequired(TypedDict):
+    language: str
+    source_country: str
+
+
+class TopNewListMatch(TopNewListMatchRequired, total=False):
+    date: str

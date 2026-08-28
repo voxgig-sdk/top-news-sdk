@@ -10,7 +10,9 @@
 ---@field news table
 
 ---@class TopNewListMatch
----@field news? table
+---@field date? string
+---@field language string
+---@field source_country string
 
 local M = {}
 

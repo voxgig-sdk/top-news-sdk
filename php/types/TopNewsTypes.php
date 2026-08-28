@@ -21,6 +21,8 @@ class TopNew
 /** Request payload for TopNew#list. */
 class TopNewListMatch
 {
-    public ?array $news = null;
+    public ?string $date = null;
+    public string $language;
+    public string $source_country;
 }
 

@@ -19,7 +19,9 @@ type TopNew struct {
 
 // TopNewListMatch is the typed request payload for TopNew.ListTyped.
 type TopNewListMatch struct {
-	News *[]any `json:"news,omitempty"`
+	Date *string `json:"date,omitempty"`
+	Language string `json:"language"`
+	SourceCountry string `json:"source_country"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

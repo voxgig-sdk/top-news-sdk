@@ -19,10 +19,18 @@ TopNew = Struct.new(
 
 # Request payload for TopNew#list.
 #
-# @!attribute [rw] news
-#   @return [Array, nil]
+# @!attribute [rw] date
+#   @return [String, nil]
+#
+# @!attribute [rw] language
+#   @return [String]
+#
+# @!attribute [rw] source_country
+#   @return [String]
 TopNewListMatch = Struct.new(
-  :news,
+  :date,
+  :language,
+  :source_country,
   keyword_init: true
 )
 
