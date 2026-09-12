@@ -77,8 +77,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/top-news",
-                ["parts"] = {
-                  "top-news",
+                ["segments"] = {
+                  {
+                    ["lit"] = "top-news",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -90,6 +92,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.top_news`",
+                },
+                ["parts"] = {
+                  "top-news",
                 },
               },
             },

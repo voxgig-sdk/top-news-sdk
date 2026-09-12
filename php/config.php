@@ -103,8 +103,10 @@ class TopNewsConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/top-news',
-                  'parts' => [
-                    'top-news',
+                  'segments' => [
+                    [
+                      'lit' => 'top-news',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -116,6 +118,9 @@ class TopNewsConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.top_news`',
+                  ],
+                  'parts' => [
+                    'top-news',
                   ],
                 ],
               ],

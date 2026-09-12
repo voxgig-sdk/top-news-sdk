@@ -125,7 +125,7 @@ def _top_new_basic_setup(extra):
         "TOP_NEWS_TEST_TOP_NEW_ENTID": idmap,
         "TOP_NEWS_TEST_LIVE": "FALSE",
         "TOP_NEWS_TEST_EXPLAIN": "FALSE",
-        "TOP_NEWS_APIKEY": "NONE",
+        "TOP_NEWS_APIKEY": "",
     })
 
     idmap_resolved = helpers.to_map(
@@ -135,6 +135,10 @@ def _top_new_basic_setup(extra):
 
     if env.get("TOP_NEWS_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
+            # FIRST, so the generated fields below win: sdk-test-control.json's
+            # test.client.options adds to the live client, it does not
+            # redirect it.
+            runner.live_client_options(),
             {
                 "apikey": env.get("TOP_NEWS_APIKEY"),
             },

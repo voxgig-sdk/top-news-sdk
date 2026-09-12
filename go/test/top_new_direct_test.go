@@ -94,14 +94,22 @@ func top_newDirectSetup(mockres any) *top_newDirectSetupResult {
 	env := envOverride(map[string]any{
 		"TOP_NEWS_TEST_TOP_NEW_ENTID": map[string]any{},
 		"TOP_NEWS_TEST_LIVE":    "FALSE",
-		"TOP_NEWS_APIKEY":       "NONE",
+		"TOP_NEWS_APIKEY":       "",
 	})
 
 	live := env["TOP_NEWS_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["TOP_NEWS_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewTopNewsSDK(mergedOpts)
 

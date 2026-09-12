@@ -98,7 +98,7 @@ func TestTopNewEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		topNewRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.top_new", setup.data)))
+		topNewRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.top_new")))
 		var topNewRef01Data map[string]any
 		if len(topNewRef01DataRaw) > 0 {
 			topNewRef01Data = core.ToMapAny(topNewRef01DataRaw[0][1])
@@ -147,7 +147,7 @@ func top_newBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"top_new01", "top_new02", "top_new03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -167,7 +167,7 @@ func top_newBasicSetup(extra map[string]any) *entityTestSetup {
 		"TOP_NEWS_TEST_TOP_NEW_ENTID": idmap,
 		"TOP_NEWS_TEST_LIVE":      "FALSE",
 		"TOP_NEWS_TEST_EXPLAIN":   "FALSE",
-		"TOP_NEWS_APIKEY":         "NONE",
+		"TOP_NEWS_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["TOP_NEWS_TEST_TOP_NEW_ENTID"])
@@ -176,11 +176,23 @@ func top_newBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["TOP_NEWS_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["TOP_NEWS_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewTopNewsSDK(core.ToMapAny(mergedOpts))
 	}

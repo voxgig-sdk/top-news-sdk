@@ -48,8 +48,10 @@ main: kit: entity: top_new: {
           }
           method: "GET"
           orig: "/top-news"
-          parts: [
-            "top-news"
+          segments: [
+            {
+              lit: "top-news"
+            }
           ]
           select: {
             exist: [

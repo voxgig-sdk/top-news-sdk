@@ -60,15 +60,18 @@ def _top_new_direct_setup(mockres):
     env = runner.env_override({
         "TOP_NEWS_TEST_TOP_NEW_ENTID": {},
         "TOP_NEWS_TEST_LIVE": "FALSE",
-        "TOP_NEWS_APIKEY": "NONE",
+        "TOP_NEWS_APIKEY": "",
     })
 
     live = env.get("TOP_NEWS_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("TOP_NEWS_APIKEY"),
-        }
+        })
         client = TopNewsSDK(merged_opts)
         return {
             "client": client,

@@ -124,7 +124,7 @@ function top_new_basic_setup($extra)
         "TOP_NEWS_TEST_TOP_NEW_ENTID" => $idmap,
         "TOP_NEWS_TEST_LIVE" => "FALSE",
         "TOP_NEWS_TEST_EXPLAIN" => "FALSE",
-        "TOP_NEWS_APIKEY" => "NONE",
+        "TOP_NEWS_APIKEY" => "",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -135,10 +135,17 @@ function top_new_basic_setup($extra)
 
     if ($env["TOP_NEWS_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
+            // FIRST, so the generated fields below win: sdk-test-control.json's
+            // test.client.options adds to the live client, it does not redirect it.
+            Runner::live_client_options(),
             [
                 "apikey" => $env["TOP_NEWS_APIKEY"],
             ],
-            $extra ?? [],
+            // ismap, not a plain "?? []" default: an empty PHP array is a
+            // LIST, and a non-map later entry REPLACES the accumulated map in
+            // merge - so the no-extras call discarded live_client_options()
+            // and the apikey/server map above it.
+            Vs::ismap($extra) ? $extra : new \stdClass(),
         ]);
         $client = new TopNewsSDK(Helpers::to_map($merged_opts));
     }

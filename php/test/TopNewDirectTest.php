@@ -68,15 +68,17 @@ function top_new_direct_setup($mockres)
     $env = Runner::env_override([
         "TOP_NEWS_TEST_TOP_NEW_ENTID" => [],
         "TOP_NEWS_TEST_LIVE" => "FALSE",
-        "TOP_NEWS_APIKEY" => "NONE",
+        "TOP_NEWS_APIKEY" => "",
     ]);
 
     $live = $env["TOP_NEWS_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["TOP_NEWS_APIKEY"],
-        ];
+        ]);
         $client = new TopNewsSDK($merged_opts);
         return [
             "client" => $client,
