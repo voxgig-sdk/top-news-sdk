@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/top-news",
+  "name": "@voxgig-sdk/top-news-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Top News public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

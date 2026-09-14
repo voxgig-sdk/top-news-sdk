@@ -105,7 +105,7 @@ local results, err = client:TopNew():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/releases) |
+| TypeScript | `@voxgig-sdk/top-news-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/releases) |
 | Python | `voxgig-sdk-top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/releases) |
 | PHP | `voxgig-sdk/top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/top-news-sdk/go` | `go get github.com/voxgig-sdk/top-news-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:TopNew():list()
 ### TypeScript
 
 ```ts
-import { TopNewsSDK } from '@voxgig-sdk/top-news'
+import { TopNewsSDK } from '@voxgig-sdk/top-news-sdk'
 
 const client = new TopNewsSDK({
   apikey: process.env.TOP_NEWS_APIKEY,

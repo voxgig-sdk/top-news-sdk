@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TopNewsSDK } from '@voxgig-sdk/top-news'
+import { TopNewsSDK } from '@voxgig-sdk/top-news-sdk'
 
 const client = new TopNewsSDK({
   apikey: process.env.TOP_NEWS_APIKEY,
@@ -409,7 +409,7 @@ top-news/
 Import the SDK from the package root:
 
 ```ts
-import { TopNewsSDK } from '@voxgig-sdk/top-news'
+import { TopNewsSDK } from '@voxgig-sdk/top-news-sdk'
 ```
 
 ### Entity state
