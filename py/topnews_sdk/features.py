@@ -1,12 +1,18 @@
 # TopNews SDK feature factory
 
 from topnews_sdk.feature.base_feature import TopNewsBaseFeature
+from topnews_sdk.feature.ratelimit_feature import TopNewsRatelimitFeature
+from topnews_sdk.feature.retry_feature import TopNewsRetryFeature
 from topnews_sdk.feature.test_feature import TopNewsTestFeature
+from topnews_sdk.feature.timeout_feature import TopNewsTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: TopNewsBaseFeature(),
+    "ratelimit": lambda: TopNewsRatelimitFeature(),
+    "retry": lambda: TopNewsRetryFeature(),
     "test": lambda: TopNewsTestFeature(),
+    "timeout": lambda: TopNewsTimeoutFeature(),
 }
 
 

@@ -4,7 +4,10 @@ declare(strict_types=1);
 // TopNews SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class TopNewsFeatures
@@ -14,8 +17,14 @@ class TopNewsFeatures
         switch ($name) {
             case "base":
                 return new TopNewsBaseFeature();
+            case "ratelimit":
+                return new TopNewsRatelimitFeature();
+            case "retry":
+                return new TopNewsRetryFeature();
             case "test":
                 return new TopNewsTestFeature();
+            case "timeout":
+                return new TopNewsTimeoutFeature();
             default:
                 return new TopNewsBaseFeature();
         }
@@ -31,7 +40,10 @@ class TopNewsFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

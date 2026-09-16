@@ -18,5 +18,209 @@
         "news": []
       }
     }
+  },
+  "requests": {
+    "GET /top-news": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getTopNews",
+        "parameters": [
+          {
+            "description": "The country code for which to retrieve top news (e.g., 'us' for United States)",
+            "in": "query",
+            "name": "source-country",
+            "required": true,
+            "schema": {
+              "example": "us",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The language code for the news articles (e.g., 'en' for English)",
+            "in": "query",
+            "name": "language",
+            "required": true,
+            "schema": {
+              "example": "en",
+              "type": "string"
+            }
+          },
+          {
+            "description": "The date for which to retrieve top news. If not specified, defaults to current day.",
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "format": "date",
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "country": "us",
+                  "language": "en",
+                  "top_news": [
+                    {
+                      "news": [
+                        {
+                          "author": "Taegan Goddard",
+                          "authors": [
+                            "Taegan Goddard"
+                          ],
+                          "id": 224767206,
+                          "image": "https://politicalwire.com/wp-content/uploads/2018/02/PW-podcast-logo.jpg",
+                          "publish_date": "2024-05-29 00:10:48",
+                          "summary": "...",
+                          "text": "...",
+                          "title": "Jury to Begin Deliberations In Trump Trial",
+                          "url": "https://politicalwire.com/2024/05/28/jury-to-begin-deliberations-in-trump-trial/",
+                          "video": null
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "schema": {
+                  "properties": {
+                    "country": {
+                      "description": "Country code of the news source",
+                      "example": "us",
+                      "type": "string"
+                    },
+                    "language": {
+                      "description": "Language code of the news articles",
+                      "example": "en",
+                      "type": "string"
+                    },
+                    "top_news": {
+                      "description": "Array of news clusters, ordered by ranking",
+                      "items": {
+                        "properties": {
+                          "news": {
+                            "description": "Array of news articles in this cluster from different sources",
+                            "items": {
+                              "properties": {
+                                "author": {
+                                  "description": "Primary author of the article",
+                                  "example": "Taegan Goddard",
+                                  "type": "string"
+                                },
+                                "authors": {
+                                  "description": "List of all authors of the article",
+                                  "example": [
+                                    "Taegan Goddard"
+                                  ],
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                },
+                                "id": {
+                                  "description": "Unique identifier for the news article",
+                                  "example": 224767206,
+                                  "type": "integer"
+                                },
+                                "image": {
+                                  "description": "URL to the article's main image",
+                                  "example": "https://politicalwire.com/wp-content/uploads/2018/02/PW-podcast-logo.jpg",
+                                  "format": "uri",
+                                  "nullable": true,
+                                  "type": "string"
+                                },
+                                "publish_date": {
+                                  "description": "Publication date and time of the article",
+                                  "example": "2024-05-29 00:10:48",
+                                  "type": "string"
+                                },
+                                "summary": {
+                                  "description": "Summary or excerpt of the news article",
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "description": "Full text content of the news article",
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "description": "Title of the news article",
+                                  "example": "Jury to Begin Deliberations In Trump Trial",
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "description": "URL to the original news article",
+                                  "example": "https://politicalwire.com/2024/05/28/jury-to-begin-deliberations-in-trump-trial/",
+                                  "format": "uri",
+                                  "type": "string"
+                                },
+                                "video": {
+                                  "description": "URL to the article's video content if available",
+                                  "format": "uri",
+                                  "nullable": true,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "title",
+                                "url",
+                                "publish_date"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "required": [
+                          "news"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "top_news",
+                    "language",
+                    "country"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with top news clusters"
+          },
+          "400": {
+            "description": "Bad request - invalid parameters"
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing API key"
+          },
+          "429": {
+            "description": "Too many requests - rate limit exceeded"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "securitySchemes": {
+          "apiKey": {
+            "description": "API key for authentication. Required for all requests.",
+            "in": "header",
+            "name": "x-api-key",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "operation"
+      }
+    }
   }
 }

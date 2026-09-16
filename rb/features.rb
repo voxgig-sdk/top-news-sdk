@@ -1,7 +1,10 @@
 # TopNews SDK feature factory
 
 require_relative 'feature/base_feature'
+require_relative 'feature/ratelimit_feature'
+require_relative 'feature/retry_feature'
 require_relative 'feature/test_feature'
+require_relative 'feature/timeout_feature'
 
 
 module TopNewsFeatures
@@ -9,8 +12,14 @@ module TopNewsFeatures
     case name
     when "base"
       TopNewsBaseFeature.new
+    when "ratelimit"
+      TopNewsRatelimitFeature.new
+    when "retry"
+      TopNewsRetryFeature.new
     when "test"
       TopNewsTestFeature.new
+    when "timeout"
+      TopNewsTimeoutFeature.new
     else
       TopNewsBaseFeature.new
     end
