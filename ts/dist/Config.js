@@ -104,6 +104,7 @@ class Config {
         base: "https://api.worldnewsapi.com",
         auth: {
             prefix: '',
+            name: 'x-api-key',
         },
         headers: {
             "content-type": "application/json"

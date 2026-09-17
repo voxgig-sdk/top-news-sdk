@@ -81,6 +81,7 @@ func MakeConfig() map[string]any {
 			"base": "https://api.worldnewsapi.com",
 			"auth": map[string]any{
 				"prefix": "",
+				"name": "x-api-key",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",

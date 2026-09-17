@@ -105,12 +105,12 @@ local results, err = client:TopNew():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/top-news-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/releases) |
-| Python | `voxgig-sdk-top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/releases) |
-| PHP | `voxgig-sdk/top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/releases) |
+| TypeScript | `@voxgig-sdk/top-news-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/tags) |
+| Python | `voxgig-sdk-top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/tags) |
+| PHP | `voxgig-sdk/top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/top-news-sdk/go` | `go get github.com/voxgig-sdk/top-news-sdk/go@latest` |
-| Ruby | `voxgig-sdk-top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/releases) |
-| Lua | `voxgig-sdk-top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/releases) |
+| Ruby | `voxgig-sdk-top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/tags) |
+| Lua | `voxgig-sdk-top-news` | publish pending — [install from git tag](https://github.com/voxgig-sdk/top-news-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/top-news-sdk/go-cli` | `go install github.com/voxgig-sdk/top-news-sdk/go-cli/cmd/top-news@latest` |
 | Go MCP server | `github.com/voxgig-sdk/top-news-sdk/go-mcp` | `go get github.com/voxgig-sdk/top-news-sdk/go-mcp@latest` |
 
